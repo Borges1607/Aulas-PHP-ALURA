@@ -57,7 +57,11 @@ usort($notas, 'ordenaNotas');
 var_dump($notas);
 */
 
+
+
+
 //formas de ordenar array
+
 /*
 $notas = [
     'Ana' => 10,
@@ -74,13 +78,16 @@ ksort($notas);
 var_dump($notas);
 */
 
+
+
+
 //is_array //verifica se é um array
 //array_is_list //verifica se é um array numérico sequencial
 //array_key_exists(chave que qero buscar, onde quero buscar) ou Key_exists //verifica se uma chave existe dentro de um array
 //in_array mesma coisa que o array_key_exists porem ao enves de chaves buscamos valores 
-//isset //verifica se a chave existe e nula(null)
+//isset //verifica se a chave existe e nula(null) pode ser para uma variavel normal
 //array_search //procura a chave com um determinado valor
-
+/*
 $notas = [
     'Ana' => 10,
     'João' => 8,
@@ -105,7 +112,64 @@ var_dump(in_array(10, $notas));
 
 echo 'Quem tirou 10?' . PHP_EOL;
 echo array_search(10, $notas);
-
+*/
 //diferença == para ===
 // 10 == pode ser 10 ou '10'
-// 10 === só pode ser igual a 10
+// 10 === só pode ser igual a 10  //comparam a tipagem, não só o conteudo
+
+
+
+
+//diferenças de arrays
+
+// array_diff(array1, array2) //retorna um novo array connteno os elementos que existam no primeiro array mais não existem no segundo (chaves ignoradas)
+//array_diff_key // mesma coisa mas os valores são ignorados
+//array_diff_assoc //leva em concideração os dois casos
+/*
+$notasBimestre1 = [
+    'Ana' => 10,
+    'João' => 8,
+    'Maria' => 9,
+    'Roberto' => 7,
+    'Vinicius' => 6
+];
+
+$notasBimestre2 = [
+    'Ana' => 9,
+    'João' => 8,
+    'Roberto' => 7,
+];
+
+$alunosFaltantes = array_diff_key($notasBimestre1, $notasBimestre2) ;
+//var_dump(array_keys($alunosFaltantes)); //ver alunos faltantes 
+//var_dump(array_values($alunosFaltantes)); //ver notas do primeiro trimestre alunos faltantes
+
+$nomesAlunos = array_keys($alunosFaltantes);
+$notasAlunos = array_values($alunosFaltantes);
+
+var_dump(array_combine($notasAlunos, $nomesAlunos)); //conbinar arrays
+var_dump(array_flip($alunosFaltantes)); // inverte o que é valor vira chave e chave vira valor
+*/
+
+
+//Juntar arrays
+
+$alunos2021 = [
+    0 => 'Ana',
+    1 =>'João',
+    2 =>'Maria',
+    3 =>'Roberto',
+    4 =>'Vinicius'
+];
+
+$NovosAlunos = [
+    5 =>'Patricia',
+    6 =>'Nico',
+    7 =>'Kilderson',
+    8 =>'Daiane',
+];
+
+//$alunos2022 = array_merge($alunos2021, $NovosAlunos); // valores numéricos não são sobreescritos, já as chaves são
+//$alunos2022 = $alunos2021 + $NovosAlunos; // com indices iguais os que vieram depois são ignorados
+$alunos2022 = [...$alunos2021,'Felipe Borges', ...$NovosAlunos];//desenpacotando array, igual array_merge mas pode adicionar itens no meio
+var_dump($alunos2022);
