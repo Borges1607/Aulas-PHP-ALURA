@@ -153,7 +153,7 @@ var_dump(array_flip($alunosFaltantes)); // inverte o que é valor vira chave e c
 
 
 //Juntar arrays
-
+/*
 $alunos2021 = [
     0 => 'Ana',
     1 =>'João',
@@ -172,4 +172,30 @@ $NovosAlunos = [
 //$alunos2022 = array_merge($alunos2021, $NovosAlunos); // valores numéricos não são sobreescritos, já as chaves são
 //$alunos2022 = $alunos2021 + $NovosAlunos; // com indices iguais os que vieram depois são ignorados
 $alunos2022 = [...$alunos2021,'Felipe Borges', ...$NovosAlunos];//desenpacotando array, igual array_merge mas pode adicionar itens no meio
+array_push($alunos2022, 'alice', 'Bob', 'Charlie');//adicionar elemento no final da array
+$alunos2022[] = 'Luiz'; //adicionar um elemento no final da array
+array_unshift($alunos2022, 'Stephane', 'Rafaela');//adiciona elementos no inicio da array
+
+echo array_shift($alunos2022) . PHP_EOL; //remove e retorna primeiro elemento da array
+echo array_pop($alunos2022) . PHP_EOL;// remove e retorna último elemento da array
+
 var_dump($alunos2022);
+*/
+
+//tuplas = pequeno conjunto de elementos que a sua posição pode significar algo
+/*
+$dados = ['Vinicius', 10, 24];
+
+list($nome, $nota, $idade) = $dados; // ou [$nome, $nota, $idade] = $dados;     //cria novas variaveis
+*/
+$dados = [
+    'nome' => 'Vinicius',
+    'nota' => 10,
+    'idade' => 24,
+];
+
+//['nome' => $nome, 'nota' => $nota, 'idade' => $idade] = $dados;
+extract( $dados); //pega array, verifica as chaves e todas elas vão virar uma variavel
+var_dump($nome, $nota, $idade);
+
+var_dump(compact('nome','nota', 'idade')); //pega varias variáveis e transforma em um array
